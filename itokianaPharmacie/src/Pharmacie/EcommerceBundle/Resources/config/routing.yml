@@ -1,0 +1,45 @@
+ecommerce_vitrine:
+    path:     /vitrine
+    defaults: { _controller: EcommerceBundle:Accueil:vitrine }
+ecommerce_panier:
+    path:     /panier
+    defaults: { _controller: EcommerceBundle:Accueil:panier }
+ecommerce_addpanier:
+    path:     /addpanier/{id}
+    defaults: { _controller: EcommerceBundle:Accueil:addPanier }
+ecommerce_validerpanier:
+    path:     /panier/valider
+    defaults: { _controller: EcommerceBundle:Accueil:validerPanier }
+ecommerce_control:
+    path:     /control
+    defaults: { _controller: EcommerceBundle:Admin:admin }
+ecommerce_control_user:
+    path:     /control/utilisateur
+    defaults: { _controller: EcommerceBundle:Admin:user }
+ecommerce_control_medicament:
+    path:     /control/medicament
+    defaults: { _controller: EcommerceBundle:Admin:medicament }
+ecommerce_control_addMedicament:
+    path:     /control/addmedicament
+    defaults: { _controller: EcommerceBundle:Admin:addMedicament }
+ecommerce_control_fournisseur:
+    path:     /control/fournisseur
+    defaults: { _controller: EcommerceBundle:Admin:fournisseur }
+ecommerce_control_add_fournisseur:
+    path:     /control/fournisseur/new
+    defaults: { _controller: EcommerceBundle:Admin:addFournisseur }
+ecommerce_control_delete_fournisseur:
+    path:     /control/fournisseur/delete/{id}
+    defaults: { _controller: EcommerceBundle:Admin:deleteFournisseur }
+ecommerce_historique:
+    path:     /historique
+    defaults: { _controller: EcommerceBundle:Accueil:historique }
+ecommerce_commande:
+    path:     /commande
+    defaults: { _controller: EcommerceBundle:Accueil:commande }
+ecommerce_recherche:
+    path:     /resultat_recherche
+    defaults: { _controller: EcommerceBundle:Accueil:recherche }
+ecommerce_rappel_commande:
+    path: /commande/rappel
+    defaults: { _controller: EcommerceBundle:Accueil:rappelCommande}

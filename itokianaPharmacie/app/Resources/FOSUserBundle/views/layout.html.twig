@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+{% block title %}Authentification{% endblock %}
+{% block navigation %}{% endblock navigation %}
+{% block pageType %}login-page{% endblock pageType %}
+
+{% block body %}
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+{% endblock body %}
+
+{% block footer %}{% endblock footer %}

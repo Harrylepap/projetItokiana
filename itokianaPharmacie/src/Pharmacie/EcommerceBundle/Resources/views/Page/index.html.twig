@@ -1,0 +1,137 @@
+{% extends "::base.html.twig" %}
+{% block title %}Accueil{% endblock title %}
+{% block pageType %}index-page{% endblock pageType %}
+{% block body %}
+    <div class="page-header header-filter" data-parallax="active"
+         style="background-image: url({{ asset('img/test2.jpg') }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="brand">
+                        <h1>
+                            <div class="pro-badge">
+                                Hey
+                            </div>
+                            Tongasoa
+                        </h1>
+
+                        <h3 class="title">Bienvenue sur le site de la Pharmacie Itokiana</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main main-raised">
+        <div class="section section-basic">
+            <div class="container">
+                <h2 class="title">Liste de nos produits</h2>
+                <div class="form-group label-floating">
+                    <form action="{{ path('ecommerce_recherche') }}" method="post">
+                        <label class=" control-label">Recherche de produit particuliere</label>
+                        <input type="text" class="form-control" name="mot">
+                        <button class="btn btn-success">Rechercher</button>
+                    </form>
+                </div>
+                <div class="col-md-12">
+                    <div class="row products">
+                        {% if app.session.flashBag.has('success') %}
+                            <div class="alert alert-success">
+                                {% for msg in app.session.flashBag.get('success') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if app.session.flashBag.has('danger') %}
+                            <div class="alert alert-danger">
+                                {% for msg in app.session.flashBag.get('danger') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if medicaments %}
+                            {% for medicament in medicaments %}
+                                <div class="col-md-3">
+                                    <div class="card-container">
+                                        <div class="card">
+                                            <div class="front">
+                                                <div class="cover">
+                                                    <img src="{{ asset('img/fond_login.jpg') }}"/>
+                                                </div>
+                                                <div class="user">
+                                                    {% if medicament.pictureName is not null %}
+                                                        <img src="{{ asset('img/upload/'~medicament.pictureName) }}"/>
+                                                    {% else %}
+                                                        <img src="{{ asset('img/holder.png') }}"/>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="content">
+                                                    <div class="main">
+                                                        <h3 class="name">{{ medicament.libelle }}</h3>
+                                                        <p class="profession">Catégorie du medicament :
+                                                            {% for categorie in medicament.categorie %}
+                                                                {{ categorie.libelle }}
+                                                            {% endfor %}
+                                                        </p>
+                                                        <p class="text-center">Type :
+                                                            <b>{{ medicament.sorte.libelle }}</b></p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end front panel -->
+                                            <div class="back">
+                                                <div class="header">
+                                                    <h4 class="motto" style="font-size: 20px;">{{ medicament.libelle }}</h4>
+                                                </div>
+                                                <div class="content">
+                                                    <div class="main">
+                                                        <h5 class="text-center"> Dose :</h5>
+                                                        <p class="text-center">{{ medicament.dose }}</p>
+                                                        <p class="text-center" style="font-weight: bold">{{ medicament.prix | number_format}} Ariary</p>
+                                                        <p class="text-center" style="font-size: small">{{ medicament.nombre }} restants</p>
+                                                        <div class="stats-container text-center">
+                                                            <p class="buttons">
+                                                                <a href="{{ path('ecommerce_addpanier', {'id': medicament.id}) }}"
+                                                                   class="btn btn-primary"><i
+                                                                            class="fa fa-shopping-cart"></i>  Ajouter
+                                                                    Panier</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="footer">
+                                                        <div class="social-links text-center">
+                                                            <a href="#" class="facebook"> Itokiana </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end back panel -->
+                                        </div> <!-- end card -->
+                                    </div> <!-- end card-container -->
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <h3>Pas de medicaments correspondant à la recherche ^_^</h3>
+                        {% endif %}
+                    </div>
+                    <!--
+                    <div class="text-center">
+                        <ul class="pagination pagination-info">
+                            <li><a href="javascript:void(0);"> Precedent</a></li>
+                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                            <li><a href="javascript:void(0);">2</a></li>
+                            <li><a href="javascript:void(0);">3</a></li>
+                            <li><a href="javascript:void(0);">4</a></li>
+                            <li><a href="javascript:void(0);">5</a></li>
+                            <li><a href="javascript:void(0);">Suivant </a></li>
+                        </ul>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center"></div>
+
+{% endblock body %}
+{% block script %}
+{% endblock script %}

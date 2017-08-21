@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicaments list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Picturename</th>
+                <th>Dose</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicament in medicaments %}
+            <tr>
+                <td><a href="{{ path('medicament_show', { 'id': medicament.id }) }}">{{ medicament.id }}</a></td>
+                <td>{{ medicament.libelle }}</td>
+                <td>{{ medicament.pictureName }}</td>
+                <td>{{ medicament.dose }}</td>
+                <td>{{ medicament.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('medicament_show', { 'id': medicament.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('medicament_edit', { 'id': medicament.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicament_new') }}">Create a new medicament</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,6 @@
+utilisateur_homepage:
+    path:     /account
+    defaults: { _controller: UtilisateurBundle:Default:index }
+utilisateur_profil:
+    path:     /profil
+    defaults: { _controller: UtilisateurBundle:Default:profil }

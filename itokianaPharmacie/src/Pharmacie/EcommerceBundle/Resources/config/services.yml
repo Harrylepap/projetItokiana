@@ -1,0 +1,6 @@
+services:
+#    ecommerce.example:
+#        class: Pharmacie\EcommerceBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    ecommerce.sms:
+         class: Pharmacie\EcommerceBundle\Services\Sms

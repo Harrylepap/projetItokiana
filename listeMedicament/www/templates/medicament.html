@@ -1,0 +1,31 @@
+<ion-view view-title="Medicament">
+  <ion-content>
+    <div ng-hide="showDetail">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Rechercher ..." ng-model="mot">
+      </label>
+    </div>
+
+      <ion-list ng-repeat="medicament in medicaments | filter:mot" ng-click="selectMedicament(medicament)">
+        <ion-item class="item-avatar item-icon-right animated bounceInLeft" >
+          <img ng-src="http://127.0.0.1/ItokianaProjet/itokianaPharmacie/web/img/upload/{{medicament.picture_name}}">
+          <h2>{{medicament.libelle}}</h2>
+          <p>{{medicament.prix}} Ariary</p>
+          <i class="icon ion-ios-information-outline"></i>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div ng-show="showDetail">
+      <ion-item class="item-body animated bounceInRight">
+        <img class="full-image" ng-src="http://127.0.0.1/ItokianaProjet/itokianaPharmacie/web/img/upload/{{selectedMedicament.picture_name}}">
+        <p><strong>Nom : </strong>{{selectedMedicament.libelle}}</p>
+        <p><strong>Prix : </strong>{{selectedMedicament.prix}} Ariary</p>
+        <p><strong>Dose : </strong>{{selectedMedicament.dose}}</p>
+        <p><strong>Nombre restant : </strong>{{selectedMedicament.nombre}}</p>
+        <button class="button button-block button-outline button-positive" ng-click="hideDetail()">Retour</button>
+      </ion-item>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+{% block title %}Commandes {% endblock title%}
+{% block classNavigation %} navbar navbar-success {% endblock  classNavigation %}
+
+{% block body %}
+    <div class="container">
+        <div class="row well">
+            <div class="col-md-12">
+                <h2 class="title">Commandes à faire</h2>
+            </div>
+            <div class="col-md-10 col-md-offset-1">
+                {% if commandes %}
+                <ul>
+                    {% for commande in commandes %}
+                    <li>
+                        {{ commande.libelle }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <h3>Pas de commande à faire! </h3>
+                {% endif %}
+            </div>
+        </div>
+        <a href="{{ path('ecommerce_rappel_commande') }}">Prévenir la pharmacienne</a>
+    </div>
+
+{% endblock body %}

@@ -1,0 +1,187 @@
+<?php
+
+namespace Pharmacie\MedicamentBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Stock
+ *
+ * @ORM\Table(name="stock")
+ * @ORM\Entity(repositoryClass="Pharmacie\MedicamentBundle\Repository\StockRepository")
+ */
+class Stock
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Pharmacie\MedicamentBundle\Entity\Medicament")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $medicament;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Pharmacie\MedicamentBundle\Entity\Fournisseur")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $fournisseur;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateEntree", type="datetime")
+     */
+    private $dateEntree;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="datePeremption", type="date")
+     */
+    private $datePeremption;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nombre", type="integer")
+     */
+    private $nombre;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dateEntree
+     *
+     * @param \DateTime $dateEntree
+     *
+     * @return Stock
+     */
+    public function setDateEntree($dateEntree)
+    {
+        $this->dateEntree = $dateEntree;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEntree
+     *
+     * @return \DateTime
+     */
+    public function getDateEntree()
+    {
+        return $this->dateEntree;
+    }
+
+    /**
+     * Set datePeremption
+     *
+     * @param \Date $datePeremption
+     *
+     * @return Stock
+     */
+    public function setDatePeremption($datePeremption)
+    {
+        $this->datePeremption = $datePeremption;
+
+        return $this;
+    }
+
+    /**
+     * Get datePeremption
+     *
+     * @return \Date
+     */
+    public function getDatePeremption()
+    {
+        return $this->datePeremption;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param integer $nombre
+     *
+     * @return Stock
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return int
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set medicament
+     *
+     * @param \Pharmacie\MedicamentBundle\Entity\Medicament $medicament
+     *
+     * @return Stock
+     */
+    public function setMedicament(\Pharmacie\MedicamentBundle\Entity\Medicament $medicament = null)
+    {
+        $this->medicament = $medicament;
+
+        return $this;
+    }
+
+    /**
+     * Get medicament
+     *
+     * @return \Pharmacie\MedicamentBundle\Entity\Medicament
+     */
+    public function getMedicament()
+    {
+        return $this->medicament;
+    }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \Pharmacie\MedicamentBundle\Entity\Fournisseur $fournisseur
+     *
+     * @return Stock
+     */
+    public function setFournisseur(\Pharmacie\MedicamentBundle\Entity\Fournisseur $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \Pharmacie\MedicamentBundle\Entity\Fournisseur
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
+    }
+}

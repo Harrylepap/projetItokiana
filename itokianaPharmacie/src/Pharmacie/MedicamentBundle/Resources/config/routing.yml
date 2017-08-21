@@ -1,0 +1,3 @@
+medicament_homepage:
+    path:     /
+    defaults: { _controller: MedicamentBundle:Default:index }

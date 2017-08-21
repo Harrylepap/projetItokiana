@@ -1,0 +1,26 @@
+<ion-view view-title="Details">
+  <ion-content class="padding">
+    <h4 class="success">Information Medicament</h4>
+    <div>
+      <label>Recherche pour: {{libelle}}</label>
+    </div>
+    <ion-list ng-hide="showDetail">
+      <ion-item class="item-avatar animated bounceInLeft" ng-repeat="medicament in stocks | filter:libelle" ng-click="selectMedicament(medicament)">
+        <img ng-src="http://127.0.0.1/ItokianaProjet/itokianaPharmacie/web/img/upload/{{medicament.picture_name}}">
+        <h2>{{medicament.libelle}}</h2>
+        <p>{{medicament.prix}} Ariary</p>
+      </ion-item>
+    </ion-list>
+    <ion-list ng-show="showDetail">
+      <div class="item-body animated bounceInRight">
+        <img class="full-image" ng-src="http://127.0.0.1/ItokianaProjet/itokianaPharmacie/web/img/upload/{{medicament.picture_name}}">
+        <p><strong>Neom : </strong>{{selectedMedicament.libelle}}</p>
+        <p><strong>Prix : </strong>{{selectedMedicament.prix}} Ariary</p>
+        <p><strong>Dose : </strong>{{selectedMedicament.dose}}</p>
+        <p><strong>Nombre restant : </strong>{{selectedMedicament.nombre}}</p>
+        <button class="button button-block button-outline button-positive" ng-click="hideDetail()">Retour</button>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>
+

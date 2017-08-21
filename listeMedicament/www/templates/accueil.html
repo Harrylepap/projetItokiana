@@ -1,0 +1,20 @@
+<ion-view view-title="Accueil" class="text-center">
+  <ion-content>
+    <div class="padding">
+      <div class="content padding">
+        <div class="itokianaLOGO"></div>
+        <div class="row">
+          <div class="col">
+            <p class="assertive text-center ">{{datedujour | date:"EEE,  dd  LLLL  yyyy" | uppercase}}</p>
+          </div>
+        </div>
+        <form class="list" ng-submit="getMedicament(libelle)">
+          <label class="item item-input animated bounceInRight">
+            <input type="text" class="text-center" placeholder="Nom du médicament" ng-model="libelle">
+          </label>
+          <button class="button button-block button-positive animated bounceInLeft" >Chercher</button>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

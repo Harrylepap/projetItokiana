@@ -1,0 +1,42 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+     admin.medicament:
+         class: Pharmacie\MedicamentBundle\Admin\MedicamentAdmin
+         arguments: [~, Pharmacie\MedicamentBundle\Entity\Medicament, ~]
+         tags:
+                     - { name: sonata.admin, manager_type: orm, group : Medicament, label: Medicament }
+     admin.categorie:
+         class: Pharmacie\MedicamentBundle\Admin\CategorieAdmin
+         arguments: [~, Pharmacie\MedicamentBundle\Entity\Categorie, ~]
+         tags:
+                    - { name: sonata.admin, manager_type: orm, group: Categorie, label: Categorie }
+     admin.fournisseur:
+         class: Pharmacie\MedicamentBundle\Admin\FournisseurAdmin
+         arguments: [~, Pharmacie\MedicamentBundle\Entity\Fournisseur, ~]
+         tags:
+                    - { name: sonata.admin, manager_type: orm, group:Fournisseur, label: Fournisseur }
+     admin.sorte:
+         class: Pharmacie\MedicamentBundle\Admin\SorteAdmin
+         arguments: [~, Pharmacie\MedicamentBundle\Entity\Sorte, ~]
+         tags:
+                  - { name: sonata.admin, manager_type: orm, group: Sorte, label: Sorte }
+     admin.unite:
+         class: Pharmacie\MedicamentBundle\Admin\UniteAdmin
+         arguments: [~, Pharmacie\MedicamentBundle\Entity\Unite, ~]
+         tags:
+                    - { name: sonata.admin, manager_type: orm, group: Unité, label: Unite }
+
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+     elastic_search_medicament:
+             class: Pharmacie\MedicamentBundle\Form\MedicamentType
+             tags:
+                 - { name: form.type, alias: pharmacie_medicamentbundle_medicament }

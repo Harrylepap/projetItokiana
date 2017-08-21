@@ -1,0 +1,109 @@
+{% extends "::base.html.twig" %}
+{% block title %}Panier {% endblock title%}
+{% block classNavigation %} navbar navbar-success {% endblock  classNavigation %}
+
+{% block body %}
+    <div class="container">
+        <div class="row well">
+            <div class="col-md-12">
+                <h2 class="title">Mon panier d'achat</h2>
+            </div>
+            <form action="{{ path('ecommerce_validerpanier') }}" method="post">
+            <div class="col-md-10 col-md-offset-1">
+                {% if app.session.flashBag.has('success') %}
+                    {% for msg in app.session.flashBag.get('success') %}
+                        <script>alert("{{ msg }}")</script>
+                    {% endfor %}
+                {% endif %}
+                {% if app.session.flashBag.has('danger') %}
+                    <div class="alert alert-danger">
+                        {% for msg in app.session.flashBag.get('danger') %}
+                            {{ msg }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if medicaments %}
+				<div class="table-responsive">
+                    <table class="table table-shopping">
+                        <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th >Produits</th>
+                            <th class="text-right">Prix Unitaire</th>
+                            <th class="text-right">Quantité</th>
+                            <th class="text-right">Total à payer</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+							{% set i=0 %}
+							{% set taille=medicaments|length %}
+							{% for medicament in medicaments %}
+								<tr>
+									<td>
+										<div class="img-container">
+											{% if medicament.pictureName is not null %}
+												<img src="{{ asset('img/upload/'~medicament.pictureName) }}"/>
+											{% else %}
+												<img src="{{ asset('img/holder.png') }}"/>
+											{% endif %}
+										</div>
+									</td>
+									<td class="td-name">
+										<a href="#">{{ medicament.libelle }}</a>
+										<!--<br/><small>manala mony</small>-->
+										<input type="hidden" name="id{{ i }}" value="{{ medicament.id }}">
+									</td>
+									<td class="td-number" >
+										<p><b id="unitaire{{ i }}">{{ medicament.prix }}</b> <small> Ariary</small></p>
+									</td>
+									<td class="td-number">
+										<input type="number" id="nombre{{ i }}" name="nombre{{ i }}" value="1" onchange="calcul(unitaire{{ i }},nombre{{ i }},{{ i }},{{ taille }})">
+									</td>
+									<td class="td-number">
+										<p id="somme{{ i }}">{{ medicament.prix }}</p>
+									</td>
+								</tr>
+								{% set i=i+1 %}
+							{% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <h4>Acheteur : <input type="text" name="acheteur" id="acheteur"></h4><br>
+                    </div>
+                    <div class="text-center">
+                        <h4>Total à payer  : <b id="totalapayer">0,000 Ariary</b></h4>
+                        <button class="btn btn-primary">Acheter</button>
+                    </div>
+                </div>
+				{% else %}
+					<h3>Le panier est vide</h3>
+				{% endif %}
+            </div>
+            </form>
+            <div class="text-center">
+                <a href="http://www.pharmacie-itokiana.mg/invoices.php" class="btn btn-success">Facture</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+{% block mesFonctions %}
+    <script>
+        function calcul(unit,nbre,id,max) {
+            var unitaire = unit.innerHTML;
+            var nombre = nbre.value;
+            var somme = document.getElementById("somme"+id);
+            somme.value = eval(nombre*unitaire);
+            document.getElementById("somme"+id).innerHTML= somme.value;
+            var total = 0;
+            for(var i=0;i<max;i++)
+            {
+                total=eval(total+document.getElementById("somme"+i).value);
+            }
+            document.getElementById("totalapayer").innerHTML= total+'<small> Ariary</small>';
+        }
+    </script>
+{% endblock mesFonctions %}

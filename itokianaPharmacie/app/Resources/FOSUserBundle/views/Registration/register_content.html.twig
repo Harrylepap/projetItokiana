@@ -1,0 +1,46 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="page-header header-filter" filter-color="green" style=" background-image: url({{ asset('img/bg7.jpg') }}); background-size: cover; background-position: top center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card card-signup">
+                    <h2 class="card-title text-center">Inscription</h2>
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                        <div class="content">
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">face</i>
+                                    </span>
+                                {{ form_errors(form.username) }}
+                                {{ form_widget(form.username, {'attr': {'class':'form-username form-control','placeholder':'Votre pseudo...'} }) }}
+                                {{ form_widget(form._token) }}
+                            </div>
+
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">email</i>
+                                    </span>
+                                {{ form_errors(form.email) }}
+                                {{ form_widget(form.email, {'attr': {'class':'form-email form-control','placeholder':'Votre Adresse E-mail...'}}) }}
+                            </div>
+                            {% for passwordField in form.plainPassword %}
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                    {{ form_errors(passwordField) }}
+                                    {{ form_widget(passwordField, { 'attr': {'class': ' form-password form-control','placeholder':'Mot de passe ...' } }) }}
+                            </div>
+                            {% endfor %}
+                            {{ form_widget(form._token) }}
+                        </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

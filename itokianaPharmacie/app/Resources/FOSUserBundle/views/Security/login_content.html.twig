@@ -1,0 +1,78 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="page-header header-filter" style="background-image: url({{ asset('img/fond_login.jpg') }}); background-size: cover; background-position: top center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <div class="card card-signup">
+                    <br><br>
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        <div class="content">
+                            {% if error %}
+                                <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            {% endif %}
+                            <div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">face</i>
+									</span>
+                                <input type="text" id="username" name="_username" class="form-control" placeholder="{{ 'security.login.username'|trans }}">
+                            </div>
+                            <div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons" data-html="true" data-toggle="popover" data-placement="bottom" title="Mot de passe oublié?" data-content="Vous n'arriviez pas à vous connecter? Cliquez <a data-toggle='modal' data-target='#myModal'>Içi</a>"  data-container="body">lock_outline</i>
+									</span>
+                                <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" class="form-control" />
+                            </div>
+                            <div class="checkbox text-center">
+                                <label>
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on">
+                                    {{ 'security.login.remember_me'|trans }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="footer text-center">
+                            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }} " class="btn btn-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer navbar-fixed-bottom">
+        <div class="container">
+            <div class="copyright pull-right">
+                &copy; <script>document.write(new Date().getFullYear())</script> <a href="#" target="_blank">Pharmacie Itokiana</a>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header header header-danger">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+                <h4 class="modal-title">Mot de passe perdu?</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                    <div class="form-group label-floating">
+                        <label class="control-label">{{ 'resetting.request.username'|trans }}</label>
+                        <input type="text" id="username" name="username" required="required" class="form-control" />
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-warning" value="{{ 'resetting.request.submit'|trans }}" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p class="pull-right">Pharmacie Itokiana</p>
+            </div>
+        </div>
+    </div>
+</div>

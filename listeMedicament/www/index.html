@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Itokiana</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+  <ion-side-menus>
+    <ion-side-menu-content>
+      <ion-nav-bar class="bar-balanced">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-buttons>
+          <button menu-toggle="left" class="button button-icon ion-navicon"></button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-nav-view>
+
+      </ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+      <ion-header-bar">
+        <img src="img/itokiana2.jpg" class="full-image">
+      </ion-header-bar>
+
+      <div class="item item-icon-left balanced">
+        <a class="tab-item" menu-close ui-sref="accueil">
+          <i class="icon ion-ios-home-outline"></i>Accueil
+        </a>
+      </div>
+      <div class="item item-icon-left royal">
+        <a class="tab-item" menu-close ui-sref="medicament">
+          <i class="icon ion-ios-medkit-outline"></i>Liste des Médicaments
+        </a>
+      </div>
+      <div class="item item-icon-left assertive">
+        <a class="tab-item" menu-close ui-sref="geo">
+          <i class="icon ion-ios-location-outline"></i>Localiser
+        </a>
+      </div>
+      <div class="item item-icon-left">
+        <a class="tab-item" menu-close ui-sref="config">
+          <i class="icon ion-ios-settings-strong"></i>Configuration
+        </a>
+      </div>
+      <div class="item item-icon-left positive">
+        <a class="tab-item" menu-close ui-sref="apropos">
+          <i class="icon ion-ios-contact"></i>A propos
+        </a>
+      </div>
+      <!--
+      <ion-item menu-close ui-sref="medicament">Liste des Médicaments</ion-item>
+      <ion-item menu-close ui-sref="geo">Localiser</ion-item>
+      <ion-item menu-close ui-sref="config">Configuration</ion-item>
+      <ion-item menu-close ui-sref="contact">A propos</ion-item>
+      -->
+    </ion-side-menu>
+  </ion-side-menus>
+  <!--<div class="tabs tabs-icon-top">
+      <a class="tab-item" menu-close ui-sref="accueil">
+        <i class="icon ion-home"></i>Accueil
+      </a>
+      <a class="tab-item" menu-close ui-sref="medicament">
+        <i class="icon ion-medkit"></i>Liste des Médicaments
+      </a>
+      <a class="tab-item" menu-close ui-sref="geo">
+        <i class="icon ion-location"></i>Localiser
+      </a>
+      <a class="tab-item" menu-close ui-sref="config">
+        <i class="icon ion-settings"></i>Configuration
+      </a>
+      <a class="tab-item" menu-close ui-sref="contact">
+        <i class="icon ion-android-call"></i>A propos
+      </a>
+  </div>-->
+  </body>
+</html>

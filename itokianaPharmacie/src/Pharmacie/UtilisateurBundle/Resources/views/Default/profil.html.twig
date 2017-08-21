@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mon profil | Itokiana</title>
+
+
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+
+
+</head>
+
+<body>
+<aside class="profile-card">
+    <header>
+        <h1>{{ app.user.username }}</h1>
+        <h1 class="text-center" style="font-size: 12px;">( {{ app.user.email }} )</h1>
+
+    </header>
+    <div class="profile-bio">
+        {{ form_start(form, { 'action': path('fos_user_change_password'), 'attr': { 'class': 'fos_user_change_password' } }) }}
+        <div class="form-group">
+            {{ form_label(form.current_password, "Mot de passe actuel") }}
+            {{ form_errors(form.current_password) }}
+            {{ form_widget(form.current_password, {'attr': {'class':'form-current_password form-control'} }) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.plainPassword.first, "Nouveau mot de passe") }}
+            {{ form_errors(form.plainPassword.first) }}
+            {{ form_widget(form.plainPassword.first, {'attr': {'class':'form-plainPassword-first form-control'} }) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.plainPassword.second, "Confirmation mot de passe") }}
+            {{ form_errors(form.plainPassword.second) }}
+            {{ form_widget(form.plainPassword.second, {'attr': {'class':'form-plainPassword-second form-control'} }) }}
+        </div>
+        {{ form_widget(form._token) }}
+        <a href="{{ path("ecommerce_homepage") }}" class="btn btn-danger">Annuler</a>
+        <button type="submit" class="btn btn-success">Changer</button>
+        {{ form_end(form) }}
+        <h3  class="text-left" style="font-size: 12px;">Derniere connexion : {{ app.user.getlastlogin | date }}</h3>
+    </div>
+</aside>
+
+
+</body>
+</html>
